@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { background: #08142A; -webkit-text-size-adjust: 100%; }
+  body { @apply bg-warm font-sans text-navy antialiased; text-rendering: optimizeLegibility; }
+  ::selection { background: #B89A4E; color: #08142A; }
+  :focus-visible { outline: 2px solid #B89A4E; outline-offset: 3px; border-radius: 4px; }
+  h1, h2, h3, h4 { letter-spacing: -0.035em; line-height: 1.02; }
+  img { max-width: 100%; }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-[1440px] px-5 md:px-10; }
+  .section { @apply py-24 md:py-36; }
+  .display { @apply font-extrabold; font-size: clamp(2.4rem, 5.4vw, 5rem); }
+  .title { @apply font-bold; font-size: clamp(2rem, 4vw, 3.6rem); }
+  .lead { @apply text-lg leading-relaxed md:text-xl; }
+  .link-line { position: relative; }
+  .link-line::after { content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .5s cubic-bezier(.7,0,.2,1); }
+  .link-line:hover::after, .link-line[aria-current='page']::after, .link-line:focus-visible::after { transform: scaleX(1); transform-origin: left; }
+  .field { @apply w-full border-0 border-b border-navy/30 bg-transparent px-0 py-3 text-base text-navy outline-none transition-colors placeholder:text-navy/40 focus:border-gold; border-radius: 0; }
+  .field[aria-invalid='true'] { @apply border-red-700; }
+}
+
+/* Smooth scroll (Lenis) */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
